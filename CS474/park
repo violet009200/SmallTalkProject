@@ -1,0 +1,319 @@
+<?xml version="1.0"?>
+
+<st-source>
+<time-stamp>From VisualWorks® Personal Use Edition, 8.0.1 of March 26, 2015 on October 27, 2015 at 3:35:01 PM</time-stamp>
+
+
+<component-created>
+<name>CS474</name> <type>package</type>
+</component-created><!-- Package CS474* -->
+
+
+<component-created>
+<name>CS474</name> <type>package</type>
+</component-created>
+
+<name-space>
+<name>CS474</name>
+<environment>Smalltalk</environment>
+<private>false</private>
+<imports>
+			private Smalltalk.*
+			</imports>
+<category></category>
+<attributes>
+<package>CS474</package>
+</attributes>
+</name-space>
+
+<comment>
+<name-space-id>CS474</name-space-id>
+<body>CS474 SmalltalkProject 2 SPL ProjectWritten by Bora Park</body>
+</comment>
+
+<class>
+<name>MainWindow</name>
+<environment>CS474</environment>
+<super>UI.ApplicationModel</super>
+<private>false</private>
+<indexed-type>none</indexed-type>
+<inst-vars>inputText outputText_cur outputText_all spl curLine intClass newl done totalLine inputStream </inst-vars>
+<class-inst-vars></class-inst-vars>
+<imports></imports>
+<category></category>
+<attributes>
+<package>CS474</package>
+</attributes>
+</class>
+
+<comment>
+<class-id>CS474.MainWindow</class-id>
+<body>This is main window for SPL projectInstance Variables:		inputText		editor filed for entering/editing SPL code	outputText_all	print all identifiers used in the program and their values	outputText_cur	print current executing SPL source instruction	percentDone	Indicating that program edition is complete	spl 			SPL class instance	curLine 		current line number	intClass 		INTEGER class instance	newl			NEWL class instance 	done			true/false, indicate if editing is done or not	totalLine		number of lines for total inputs 	inputStream 	entire inputs</body>
+</comment>
+
+<class>
+<name>SPL</name>
+<environment>CS474</environment>
+<super>Core.Object</super>
+<private>false</private>
+<indexed-type>none</indexed-type>
+<inst-vars>array arrayLine index identifier identifier1 dicValue instruction lineNum history </inst-vars>
+<class-inst-vars></class-inst-vars>
+<imports></imports>
+<category></category>
+<attributes>
+<package>CS474</package>
+</attributes>
+</class>
+
+<comment>
+<class-id>CS474.SPL</class-id>
+<body>SPL is abstract super class for SPL instructions concrete subclassesInstance Variables:	array		array for oneline input 	arrayLine   array for whole input       index 	index of array	identifier 	identifier to declare INTEGER, NEWL	identifier1		identifier1 value	dicValue  	identifier2 value	instruction 		instruction value	lineNum	  	line number	history	 	history of identifier and variablesSubclasses must implement the followint messages:	</body>
+</comment>
+
+<class>
+<name>INTEGER</name>
+<environment>CS474</environment>
+<super>CS474.SPL</super>
+<private>false</private>
+<indexed-type>none</indexed-type>
+<inst-vars>value intIdentifier intDictionary intVal </inst-vars>
+<class-inst-vars></class-inst-vars>
+<imports></imports>
+<category></category>
+<attributes>
+<package>CS474</package>
+</attributes>
+</class>
+
+<comment>
+<class-id>CS474.INTEGER</class-id>
+<body>INTERGER class is for INTEGER instruction This is concrete subclass of SPL</body>
+</comment>
+
+<class>
+<name>NEWL</name>
+<environment>CS474</environment>
+<super>CS474.SPL</super>
+<private>false</private>
+<indexed-type>none</indexed-type>
+<inst-vars>head tail myList printList identifierList </inst-vars>
+<class-inst-vars></class-inst-vars>
+<imports></imports>
+<category></category>
+<attributes>
+<package>CS474</package>
+</attributes>
+</class>
+
+<comment>
+<class-id>CS474.NEWL</class-id>
+<body>NEWL class for create/declare empty linkedlist Instance Variables:	head	&lt;MessageForwarder | Object | ProtoObject | ProtoObject&gt;	head of the list	tail	&lt;MessageForwarder | Object | ProtoObject | ProtoObject&gt;	tail of the list	myList	List 	printList	save each values to print out	identifierList	save identifier 	</body>
+</comment>
+
+<methods>
+<class-id>CS474.SPL class</class-id> <category>instance creation</category>
+
+<body package="CS474" selector="new">new	"Answer a newly created and initialized instance."	^super new initialize</body>
+</methods>
+
+
+<methods>
+<class-id>CS474.SPL</class-id> <category>accessing</category>
+
+<body package="CS474" selector="getLineNum">getLineNum	"return line number"	^lineNum</body>
+
+<body package="CS474" selector="getSPLvalue">getSPLvalue	"return value"	^dicValue</body>
+
+<body package="CS474" selector="setIdentifier1:">setIdentifier1: aIdentifier	"set identifier1"	identifier1:=aIdentifier</body>
+
+<body package="CS474" selector="getIdentifier">getIdentifier	"return Identifier"	^identifier</body>
+
+<body package="CS474" selector="getarray:">getarray: aIndex	"get element from arrayLine"	^array at:aIndex.</body>
+
+<body package="CS474" selector="setValue:">setValue: aValue	dicValue:=aValue.</body>
+
+<body package="CS474" selector="getInstruction">getInstruction	"return instruction"	^instruction</body>
+
+<body package="CS474" selector="getarrayLine:">getarrayLine: aIndex	"get element from arrayLine"	^arrayLine at:aIndex.</body>
+
+<body package="CS474" selector="setIdentifier:put:">setIdentifier: aIdentifier put:aValue	"save into dictionary"	identifier at:aIdentifier asString put:aValue.		identifier1:= aIdentifier.</body>
+
+<body package="CS474" selector="setIdentifier:">setIdentifier: aIdentifier	"save into dictionary"	identifier at:aIdentifier asString put:0.</body>
+
+<body package="CS474" selector="getIdentifier1">getIdentifier1	"return Identifier1"	^identifier1</body>
+
+<body package="CS474" selector="setINTvalue:">setINTvalue:aIdentifier	"value:=self getDictionary at: aIdentifier asString."</body>
+
+<body package="CS474" selector="setSPLvalue:">setSPLvalue:aIdentifier	"get value which is saved in aIdentifier"	dicValue:=self getIdentifier at: aIdentifier asString.</body>
+</methods>
+
+<methods>
+<class-id>CS474.SPL</class-id> <category>subclass</category>
+
+<body package="CS474" selector="setDictionary">setDictionary	self subclassResponsibility</body>
+
+<body package="CS474" selector="getDictionary">getDictionary	self subclassResponsibility</body>
+</methods>
+
+<methods>
+<class-id>CS474.SPL</class-id> <category>manageData</category>
+
+<body package="CS474" selector="addInstruction:">addInstruction: aLineNum	"add Instructions"	|oneLine token inputStream|		"parse line to set instruction"	oneLine:=self getarrayLine:aLineNum.		inputStream:=oneLine readStream.	"read line by line"		"get a token for one line"	[inputStream atEnd]	whileFalse:[				token:= inputStream upTo: Character space.				array add:token asString.				index:=index+1.			].			self assignInstruction. 	"assign Instruction by using token"</body>
+
+<body package="CS474" selector="resetInstruction">resetInstruction	"reset array of oneline input"	array:=OrderedCollection new.	index:=0.</body>
+
+<body package="CS474" selector="addLine:">addLine: aString	"add Line"		arrayLine add:aString.	lineNum:= lineNum+1.</body>
+
+<body package="CS474" selector="assignInstruction">assignInstruction		index=1		ifTrue:[instruction:=(array at:1).			  	^self].	"HLT"		index= 2		ifTrue:[instruction:= (array at:2)]			ifFalse:[instruction:= (array at:3)].			"self doInstruction."		"self resetInstruction."</body>
+</methods>
+
+<methods>
+<class-id>CS474.SPL</class-id> <category>action</category>
+
+<body package="CS474" selector="printHistory">printHistory	"print history of Identifier and variables"		^history asString.</body>
+
+<body package="CS474" selector="setHistory:with:">setHistory: aIdentifier with:aValue		"save identifer and variables"		|enter|	        enter:=String with:Character cr.		history:=history,aIdentifier,' = ',aValue, enter printString.</body>
+</methods>
+
+<methods>
+<class-id>CS474.SPL</class-id> <category>initialize-release</category>
+
+<body package="CS474" selector="initialize">initialize	"Initialize a newly created instance. This method must answer the receiver."	array:=OrderedCollection new.	arrayLine:=OrderedCollection new.	identifier := Dictionary new.	lineNum:=0.	index:=0.	history:=''.</body>
+</methods>
+
+
+<methods>
+<class-id>CS474.INTEGER</class-id> <category>accessing</category>
+
+<body package="CS474" selector="setINTvalue:">setINTvalue:aIdentifier	value:=self getDictionary at: aIdentifier asString.	^value</body>
+
+<body package="CS474" selector="getINTidentifier">getINTidentifier	^intIdentifier.</body>
+
+<body package="CS474" selector="getINTvalue">getINTvalue	^value.</body>
+
+<body package="CS474" selector="setINTidentifier:">setINTidentifier: aIdentifier	intIdentifier:=aIdentifier</body>
+
+<body package="CS474" selector="getVal">getVal	^intVal.</body>
+
+<body package="CS474" selector="setINTval:">setINTval: val	value:=val.</body>
+
+<body package="CS474" selector="setVal:">setVal: avalue intVal:= avalue.</body>
+</methods>
+
+<methods>
+<class-id>CS474.INTEGER</class-id> <category>subclass</category>
+
+<body package="CS474" selector="setDictionary:put:">setDictionary: aIdentifier put:aValue	"save int dictionary"	intDictionary at:aIdentifier asString put:aValue.		intIdentifier:=aIdentifier.	value:=self getDictionary at: aIdentifier asString.</body>
+
+<body package="CS474" selector="getDictionary">getDictionary	^intDictionary</body>
+</methods>
+
+<methods>
+<class-id>CS474.INTEGER</class-id> <category>testing</category>
+
+<body package="CS474" selector="add:with:">add: val1 with: val2	"add two integer"	|final|	final:= val1+val2.	^final.</body>
+
+<body package="CS474" selector="chs:">chs: aValue	"chage sign"	|final|	final:=aValue*(-1).	^final.</body>
+</methods>
+
+<methods>
+<class-id>CS474.INTEGER</class-id> <category>initialize-release</category>
+
+<body package="CS474" selector="initialize">initialize	"Initialize a newly created instance. This method must answer the receiver."		" *** Replace this comment with the appropriate initialization code *** "		value:=0.	intIdentifier:=nil.	intDictionary := Dictionary new.	^self</body>
+</methods>
+
+
+<methods>
+<class-id>CS474.NEWL</class-id> <category>accessing</category>
+
+<body package="CS474" selector="myList">myList	^myList.</body>
+
+<body package="CS474" selector="removeFirst">removeFirst	"remove first element of the list"	^myList removeFirst.</body>
+
+<body package="CS474" selector="head">head	"return head"		^head.</body>
+
+<body package="CS474" selector="setLISTidentifier:">setLISTidentifier: aObject	identifierList:=aObject.</body>
+
+<body package="CS474" selector="tail">tail	"return tail"	^tail</body>
+
+<body package="CS474" selector="getLISTidentifier">getLISTidentifier	^identifierList.</body>
+</methods>
+
+<methods>
+<class-id>CS474.NEWL</class-id> <category>copying</category>
+
+<body package="CS474" selector="copy:">copy: aList	"Copy one list to another list(deep copy)"	"|newList|	newList:= aList dcopy.	^newList."	myList:= aList dcopy.	^myList.</body>
+</methods>
+
+<methods>
+<class-id>CS474.NEWL</class-id> <category>adding</category>
+
+<body package="CS474" selector="setPrint:">setPrint: aList		"save values to print"		|str space|				space:= String with:Character space.		str:=space.			aList do: [:elem | str := elem printString.				].			printList := printList,space,str printString.</body>
+
+<body package="CS474" selector="setHead">setHead	"set head of the list"	head:= myList first</body>
+
+<body package="CS474" selector="addFirst:">addFirst: newObject	^myList addFirst:newObject.</body>
+
+<body package="CS474" selector="printList">printList	"print values in list"		self setPrint: myList.		^printList asString.</body>
+
+<body package="CS474" selector="add:">add: newObject		head isNil		ifTrue:[head:=newObject. 			^myList addLast:newObject.].		^myList addLast:newObject.</body>
+
+<body package="CS474" selector="addAllFirst:">addAllFirst: anOrderedCollection 	"Add each element of anOrderedCollection at the beginning of the receiver.		Answer anOrderedCollection."	anOrderedCollection reverseDo: [:each | myList addFirst: each].	^anOrderedCollection</body>
+
+<body package="CS474" selector="setTail">setTail	"set tail of the list"	head:= myList last</body>
+
+<body package="CS474" selector="addAllLast:">addAllLast: anOrderedCollection	"add each element of an OrdredCollection at the end of receiver"		anOrderedCollection do:[:each | myList add: each].	^anOrderedCollection</body>
+</methods>
+
+<methods>
+<class-id>CS474.NEWL</class-id> <category>initialize-release</category>
+
+<body package="CS474" selector="initialize">initialize	"Initialize a newly created instance. This method must answer the receiver."	head:=nil.	tail:=nil.	myList:= OrderedCollection new.	printList:=''.</body>
+</methods>
+
+
+<methods>
+<class-id>CS474.MainWindow class</class-id> <category>interface specs</category>
+
+<body package="CS474" selector="windowSpec">windowSpec	"Tools.UIPainter new openOnClass: self andSelector: #windowSpec"	&lt;resource: #canvas&gt;	^#(#{UI.FullSpec} 		#window: 		#(#{UI.WindowSpec} 			#label: 'SPL Project' 			#bounds: #(#{Graphics.Rectangle} 641 305 1188 598 ) ) 		#component: 		#(#{UI.SpecCollection} 			#collection: #(				#(#{UI.LabelSpec} 					#layout: #(#{Graphics.LayoutOrigin} 77 0 21 0 ) 					#name: #Label1 					#label: 'INPUT' ) 				#(#{UI.TextEditorSpec} 					#layout: #(#{Graphics.LayoutFrame} 32 0 51 0 183 0 272 0 ) 					#name: #TextEditor1 					#model: #inputText 					#tabRequiresControl: true ) 				#(#{UI.ActionButtonSpec} 					#layout: #(#{Graphics.LayoutFrame} 196 0 86 0 295 0 99 0 ) 					#name: #ActionButton1 					#model: #oneInstruction 					#label: 'OnebyOne' 					#defaultable: true ) 				#(#{UI.ActionButtonSpec} 					#layout: #(#{Graphics.LayoutFrame} 197 0 118 0 293 0 131 0 ) 					#name: #ActionButton2 					#model: #oneTime 					#label: 'UntilHLT' ) 				#(#{UI.LabelSpec} 					#layout: #(#{Graphics.LayoutOrigin} 201 0 194 0 ) 					#name: #Label3 					#label: 'CurrentOutput' ) 				#(#{UI.InputFieldSpec} 					#layout: #(#{Graphics.LayoutFrame} 203 0 218 0 433 0 239 0 ) 					#name: #InputField1 					#model: #outputText_cur ) 				#(#{UI.LabelSpec} 					#layout: #(#{Graphics.LayoutOrigin} 371 0 29 0 ) 					#name: #Label4 					#label: 'Identifiers and Values' ) 				#(#{UI.TextEditorSpec} 					#layout: #(#{Graphics.LayoutFrame} 311 0 53 0 539 0 180 0 ) 					#name: #TextEditor2 					#model: #outputText_all 					#tabRequiresControl: true ) 				#(#{UI.ActionButtonSpec} 					#layout: #(#{Graphics.LayoutFrame} 197 0 53 0 292 0 66 0 ) 					#name: #ActionButton3 					#model: #donebutton 					#label: 'DoneEditing' 					#defaultable: true ) ) ) )</body>
+</methods>
+
+
+<methods>
+<class-id>CS474.MainWindow</class-id> <category>aspects</category>
+
+<body package="CS474" selector="inputText">inputText	"This method was generated by UIDefiner.  Any edits made here	may be lost whenever methods are automatically defined.  The	initialization provided below may have been preempted by an	initialize method."	^inputText isNil		ifTrue:			[inputText := String new asValue]		ifFalse:			[inputText]</body>
+
+<body package="CS474" selector="outputText_cur">outputText_cur	"This method was generated by UIDefiner.  Any edits made here	may be lost whenever methods are automatically defined.  The	initialization provided below may have been preempted by an	initialize method."	^outputText_cur isNil		ifTrue:			[outputText_cur := String new asValue]		ifFalse:			[outputText_cur]</body>
+
+<body package="CS474" selector="outputText_all">outputText_all	"This method was generated by UIDefiner.  Any edits made here	may be lost whenever methods are automatically defined.  The	initialization provided below may have been preempted by an	initialize method."	^outputText_all isNil		ifTrue:			[outputText_all := String new asValue]		ifFalse:			[outputText_all]</body>
+</methods>
+
+<methods>
+<class-id>CS474.MainWindow</class-id> <category>accessing</category>
+
+<body package="CS474" selector="getTotalLineNum">getTotalLineNum	^totalLine</body>
+
+<body package="CS474" selector="getCurLineNum">getCurLineNum	^curLine</body>
+</methods>
+
+<methods>
+<class-id>CS474.MainWindow</class-id> <category>actions</category>
+
+<body package="CS474" selector="donebutton">donebutton	"after done editing, it set the done flag true then read the inputs from text box"		|line|		"set done button is pressed"	done:=true.	totalLine:=0.	curLine:=0.		"get the inputField and set it as a readonly stream"	inputStream := inputText value readStream.	"Read Text editor line by line"	[inputStream atEnd]	whileFalse: [		line := inputStream upTo: Character cr.		totalLine:=totalLine+1.		spl addLine: line asString.	"create arrayLine"	].	^self</body>
+
+<body package="CS474" selector="oneTime">oneTime	"read inputs and print out result the program will run until it meets 'HLT' "		|str instruct temp temp2 tempVal tempVal2 finalVal id1 id2 idval1 idval2|		"checking editing is done"	done		ifFalse:[outputText_all value: 'Please press DoneEditing button' printString.			    ^self.].			spl setHistory:'Program is executing until HLT' with:'Start' printString.		"(loop) do perform curLine from 0 to totalLine"	[totalLine&gt;0]	whileTrue:[	totalLine:= totalLine-1.	"perform by Instruction"	"Clear outputtextbox"	outputText_cur value:''.		"execute program line by line"	curLine:=curLine+1.	spl addInstruction:curLine.	str:= spl getarrayLine:curLine.		"perform by Instruction"	instruct:= spl getInstruction asString.		instruct='INTEGER'	"declare integer identifier INTEGER"		ifTrue:[ id1:=(spl getarray:1).			   intClass:=INTEGER new.			   "temp:='INT ', temp."			  			   intClass setDictionary: id1 put:0.			   spl setIdentifier:id1 put:intClass.			   			   intClass setINTvalue:id1.			   tempVal:=intClass setINTvalue:id1.			   spl setHistory: id1 with:tempVal printString.	"save History"		      			].			instruct='NEWL'	"declare identifier and create empty linked list"		ifTrue:[id1:=(spl getarray:1).			   "id1:='NEWL ',id1."			  			   newl:=NEWL new.			   			   spl setIdentifier:id1 put:newl.	"save to dictionary"		           tempVal:= newl head.			   spl setHistory: id1 with:tempVal printString.	"save History"			].				instruct='COMBINE'	"identifier1 becomes first element of the list bound to identifier2"		ifTrue:[id1:=(spl getarray:1).	"identifier1: INTEGER/NEWL"			   id2:=(spl getarray:2).	"identifier2: NEWL"						   idval1:= spl getIdentifier at:id1 asString.	"NEWL/INTEGER"			   idval2:= spl getIdentifier at:id2 asString.	"NEWL"						 "if id1 id1 is INT then do idval2 add:idval1 else idval2 addAllLast:idval1"			   (idval1 printString = 'a CS474.INTEGER')				ifTrue:[	"identifier1 = INTEGER"						tempVal:=intClass setINTvalue:id1.	"get the value from int obj"													tempVal:= tempVal asNumber.			   			idval2 add:tempVal.					   									finalVal:=idval2 myList printString.						]				ifFalse:[						        idval2 myList addFirst:idval1 myList.						finalVal:=idval2 myList printString.										].				 			    spl setIdentifier:id2 put:idval2.		          			    spl setHistory: id2 with:finalVal printString.			].					instruct='COPY'		"identifier2:= identifier1 dcopy"		ifTrue:[				id1:=(spl getarray:1).	"identifier1: NEWL"			   	id2:=(spl getarray:2).	"identifier2: NEWL"							 idval1:= spl getIdentifier at:id1 asString.	"NEWL"			  	 idval2:= spl getIdentifier at:id2 asString.	"NEWL"				 							idval2 copy:idval1 myList.				"dcopy"				   	finalVal:=idval2 myList printString.			 			   	spl setIdentifier:id2 put:idval2.		          			    	spl setHistory: id2 with:finalVal printString.			].					instruct= 'HEAD'	"first element of identifier1 is bound to identifier2. (1 2 3) (4 5 6) HEAD -&gt; id2:(1)"		ifTrue:[								id1:=(spl getarray:1).	"identifier1: NEWL"			   	id2:=(spl getarray:2).	"identifier2: NEWL/INTEGER"											idval1:= spl getIdentifier at:id1 asString.		"get identifier1 value"			   	idval2:= spl getIdentifier at:id2 asString. 		"get identifier2 value"				idval2:= NEWL new.								temp:=idval1 myList first.								idval2 add:temp.								finalVal:=idval2 myList printString.				spl setIdentifier:id2 put:idval2.								spl setHistory: id2 with:finalVal printString.			].			instruct='TAIL'	"(1 2 3) (4 5 6) Tail -&gt; id2:(2 3)"		ifTrue:[				id1:=(spl getarray:1).	"identifier1: NEWL"			   	id2:=(spl getarray:2).	"identifier2: NEWL/INTEGER"											idval1:= spl getIdentifier at:id1 asString.		"get identifier1 value"			   	idval2:= spl getIdentifier at:id2 asString. 		"get identifier2 value"				idval2:= NEWL new.								idval1 myList removeFirst.								idval2 myList add:idval1 myList.								finalVal:=idval2 myList printString.				spl setIdentifier:id2 put:idval2.								spl setHistory: id2 with:finalVal printString.			].					instruct = 'ASSIGN'	"assign value to integer identifier"		ifTrue:[temp:=(spl getarray:1).			   tempVal:=(spl getarray:2) asNumber.			   			   			   spl setIdentifier:temp put:(intClass setVal:tempVal).	"put into Dictionary"			   intClass setDictionary:temp put:tempVal.				 			   			   finalVal:=intClass setINTvalue:temp.		           spl setHistory: temp with:finalVal printString.	"save History"				].			instruct = 'CHS' 	"change sign"		ifTrue:[				id1:=(spl getarray:1).				"temp:= spl getIdentifier at:id1 asString."	"get int obj"				tempVal:=intClass setINTvalue:id1.	"get the value from int obj"				"tempVal:= temp getVal."	"get the value from int obj"								tempVal:= tempVal asNumber.								tempVal:=intClass chs: tempVal."change sign"				spl setIdentifier:id1 put:(intClass setVal:tempVal).	"put into Dictionary"				intClass setDictionary: id1 put:tempVal.								finalVal:=intClass setINTvalue:id1.			   		                spl setHistory: id1 with: finalVal printString.	"save History"			].	instruct = 'ADD' 	"add identifier1 and identifier2"		ifTrue:[				id1:=(spl getarray:1).				id2:= (spl getarray:2).								tempVal:=intClass setINTvalue:id1.	"get the value from int obj"				tempVal2:= intClass setINTvalue:id2.								finalVal:= intClass add:tempVal with:tempVal2.	"add two numbers"								spl setIdentifier:id1 put:(intClass setVal:finalVal).	"put into Dictionary"				intClass setDictionary: id1 put:finalVal.								finalVal:=intClass setINTvalue:id1.			   		                spl setHistory: id1 with: finalVal printString.	"save History"										].					instruct='IF'	"if identifier1 has 0 or empty list, then go to integer line number"		ifTrue:[				id1:=(spl getarray:1).	"identifier1"				temp2:= (spl getarray:2).	"positive integer"								temp:= spl getIdentifier at:id1 asString.	"get int obj"				tempVal2:= temp2 asNumber.												(temp printString = 'a CS474.INTEGER')					ifTrue:[tempVal:=intClass setINTvalue:id1.						    tempVal:= tempVal asNumber]"get the value from int obj"					ifFalse:[tempVal:= temp head].												tempVal= 0					ifTrue:[							"execute program line by line"							curLine:=tempVal2-1.							spl addInstruction:curLine.							str:= spl getarrayLine:curLine.									"perform by Instruction"							instruct:= spl getInstruction asString.							spl setHistory: 'Go Line Number:' with: tempVal2 printString.	"save History"						]					ifFalse:[						(tempVal isNil)							ifTrue:[									"execute program line by line"									curLine:=tempVal2-1.									spl addInstruction:curLine.									str:= spl getarrayLine:curLine.											"perform by Instruction"									instruct:= spl getInstruction asString.									spl setHistory: 'Go Line Number:' with: tempVal2 printString.	"save History"						]						ifFalse:[								spl setHistory: 'identifier1 is not 0 or not nil' with:'continue next line' printString.	"save History"							]					].										].		 	instruct='HLT'	"when instruction is HLT"		ifTrue:[			    	curLine:=0.				totalLine:=0.				done:= false.				].			outputText_cur value: str printString.	"print current line"	outputText_all value: spl printHistory.	"print whole history of identifier and variable"		spl resetInstruction.	"reset instrcution for next line"	].	"(loop end)"</body>
+
+<body package="CS474" selector="oneInstruction">oneInstruction	"read input and print result for one instruction per one time"	|str instruct temp temp2 tempVal tempVal2 finalVal id1 id2 idval1 idval2|	"checking editing is done"	done		ifFalse:[outputText_all value: 'Please press DoneEditing button' printString.			    ^self.].		"Clear outputtextbox"	outputText_cur value:''.		"execute program line by line"	curLine:=curLine+1.	spl addInstruction:curLine.	str:= spl getarrayLine:curLine.		"perform by Instruction"	instruct:= spl getInstruction asString.			instruct='INTEGER'	"declare integer identifier INTEGER"		ifTrue:[ id1:=(spl getarray:1).			   intClass:=INTEGER new.			   "temp:='INT ', temp."			  			   intClass setDictionary: id1 put:0.			   spl setIdentifier:id1 put:intClass.			   			   intClass setINTvalue:id1.			   tempVal:=intClass setINTvalue:id1.			   spl setHistory: id1 with:tempVal printString.	"save History"		      			].			instruct='NEWL'	"declare identifier and create empty linked list"		ifTrue:[id1:=(spl getarray:1).			   "id1:='NEWL ',id1."			  			   newl:=NEWL new.			   			   spl setIdentifier:id1 put:newl.	"save to dictionary"		           tempVal:= newl head.			   spl setHistory: id1 with:tempVal printString.	"save History"			].				instruct='COMBINE'	"identifier1 becomes first element of the list bound to identifier2"		ifTrue:[id1:=(spl getarray:1).	"identifier1: INTEGER/NEWL"			   id2:=(spl getarray:2).	"identifier2: NEWL"						   idval1:= spl getIdentifier at:id1 asString.	"NEWL/INTEGER"			   idval2:= spl getIdentifier at:id2 asString.	"NEWL"						 "if id1 id1 is INT then do idval2 add:idval1 else idval2 addAllLast:idval1"			   (idval1 printString = 'a CS474.INTEGER')				ifTrue:[	"identifier1 = INTEGER"						tempVal:=intClass setINTvalue:id1.	"get the value from int obj"													tempVal:= tempVal asNumber.			   			idval2 add:tempVal.					   									finalVal:=idval2 myList printString.						]				ifFalse:[						        idval2 myList addFirst:idval1 myList.						finalVal:=idval2 myList printString.										].				 			    spl setIdentifier:id2 put:idval2.		          			    spl setHistory: id2 with:finalVal printString.			].					instruct='COPY'		"identifier2:= identifier1 dcopy"		ifTrue:[				id1:=(spl getarray:1).	"identifier1: NEWL"			   	id2:=(spl getarray:2).	"identifier2: NEWL"							 idval1:= spl getIdentifier at:id1 asString.	"NEWL"			  	 idval2:= spl getIdentifier at:id2 asString.	"NEWL"				 							idval2 copy:idval1 myList.				"dcopy"				   	finalVal:=idval2 myList printString.			 			   	spl setIdentifier:id2 put:idval2.		          			    	spl setHistory: id2 with:finalVal printString.			].					instruct= 'HEAD'	"first element of identifier1 is bound to identifier2. (1 2 3) (4 5 6) HEAD -&gt; id2:(1)"		ifTrue:[								id1:=(spl getarray:1).	"identifier1: NEWL"			   	id2:=(spl getarray:2).	"identifier2: NEWL/INTEGER"											idval1:= spl getIdentifier at:id1 asString.		"get identifier1 value"			   	idval2:= spl getIdentifier at:id2 asString. 		"get identifier2 value"				idval2:= NEWL new.								temp:=idval1 myList first.								idval2 add:temp.								finalVal:=idval2 myList printString.				spl setIdentifier:id2 put:idval2.								spl setHistory: id2 with:finalVal printString.			].			instruct='TAIL'	"(1 2 3) (4 5 6) Tail -&gt; id2:(2 3)"		ifTrue:[				id1:=(spl getarray:1).	"identifier1: NEWL"			   	id2:=(spl getarray:2).	"identifier2: NEWL/INTEGER"											idval1:= spl getIdentifier at:id1 asString.		"get identifier1 value"			   	idval2:= spl getIdentifier at:id2 asString. 		"get identifier2 value"				idval2:= NEWL new.								idval1 myList removeFirst.								idval2 myList add:idval1 myList.								finalVal:=idval2 myList printString.				spl setIdentifier:id2 put:idval2.								spl setHistory: id2 with:finalVal printString.			].					instruct = 'ASSIGN'	"assign value to integer identifier"		ifTrue:[temp:=(spl getarray:1).			   tempVal:=(spl getarray:2) asNumber.			   			   			   spl setIdentifier:temp put:(intClass setVal:tempVal).	"put into Dictionary"			   intClass setDictionary:temp put:tempVal.				 			   			   finalVal:=intClass setINTvalue:temp.		           spl setHistory: temp with:finalVal printString.	"save History"				].			instruct = 'CHS' 	"change sign"		ifTrue:[				id1:=(spl getarray:1).				"temp:= spl getIdentifier at:id1 asString."	"get int obj"				tempVal:=intClass setINTvalue:id1.	"get the value from int obj"				"tempVal:= temp getVal."	"get the value from int obj"								tempVal:= tempVal asNumber.								tempVal:=intClass chs: tempVal."change sign"				spl setIdentifier:id1 put:(intClass setVal:tempVal).	"put into Dictionary"				intClass setDictionary: id1 put:tempVal.								finalVal:=intClass setINTvalue:id1.			   		                spl setHistory: id1 with: finalVal printString.	"save History"			].	instruct = 'ADD' 	"add identifier1 and identifier2"		ifTrue:[				id1:=(spl getarray:1).				id2:= (spl getarray:2).								tempVal:=intClass setINTvalue:id1.	"get the value from int obj"				tempVal2:= intClass setINTvalue:id2.								finalVal:= intClass add:tempVal with:tempVal2.	"add two numbers"								spl setIdentifier:id1 put:(intClass setVal:finalVal).	"put into Dictionary"				intClass setDictionary: id1 put:finalVal.								finalVal:=intClass setINTvalue:id1.			   		                spl setHistory: id1 with: finalVal printString.	"save History"										].					instruct='IF'	"if identifier1 has 0 or empty list, then go to integer line number"		ifTrue:[				id1:=(spl getarray:1).	"identifier1"				temp2:= (spl getarray:2).	"positive integer"								temp:= spl getIdentifier at:id1 asString.	"get int obj"				tempVal2:= temp2 asNumber.												(temp printString = 'a CS474.INTEGER')					ifTrue:[tempVal:=intClass setINTvalue:id1.						    tempVal:= tempVal asNumber]"get the value from int obj"					ifFalse:[tempVal:= temp head].												tempVal= 0					ifTrue:[							"execute program line by line"							curLine:=tempVal2-1.							spl addInstruction:curLine.							str:= spl getarrayLine:curLine.									"perform by Instruction"							instruct:= spl getInstruction asString.							spl setHistory: 'Go Line Number:' with: tempVal2 printString.	"save History"						]					ifFalse:[						(tempVal isNil)							ifTrue:[									"execute program line by line"									curLine:=tempVal2-1.									spl addInstruction:curLine.									str:= spl getarrayLine:curLine.											"perform by Instruction"									instruct:= spl getInstruction asString.									spl setHistory: 'Go Line Number:' with: tempVal2 printString.	"save History"						]						ifFalse:[								spl setHistory: 'identifier1 is not 0 or not nil' with:'continue next line' printString.	"save History"							]					].										].		 	instruct='HLT'	"when instruction is HLT"		ifTrue:[			    	curLine:=0.				totalLine:=0.				done:= false.				].					outputText_cur value: str printString.	"print current line"	outputText_all value: spl printHistory.	"print whole history of identifier and variable"		spl resetInstruction.	"reset instrcution for next line"</body>
+</methods>
+
+<methods>
+<class-id>CS474.MainWindow</class-id> <category>initialize-release</category>
+
+<body package="CS474" selector="initialize">initialize	"Initialize a newly created instance. This method must answer the receiver."	spl:= SPL new.			curLine:=0.	totalLine:=0.	done:= false.</body>
+</methods>
+
+
+
+</st-source>
